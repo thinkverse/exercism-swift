@@ -1,11 +1,5 @@
 func protectSecret(_ secret: String, withPassword password: String) -> (String) -> String {
-  return { (_ confirmPassword: String) -> String in 
-    if password == confirmPassword {
-      return secret
-    }
-
-    return "Sorry. No hidden secrets here."
-  }
+  { password == $0 ? secret : "Sorry. No hidden secrets here." }
 }
 
 func generateCombination(forRoom room: Int, usingFunction f: (Int) -> Int) -> (Int, Int, Int) {
